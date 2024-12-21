@@ -243,6 +243,21 @@ describe('#request-query', () => {
         ];
         expect(qb.queryObject.join).toIncludeSameMembers(expected);
       });
+      it('should set join, 10', () => {
+        qb.setJoin([
+          {
+            field: 'qux',
+            on: [
+              { field: 'bar', operator: 'eq', value: 100 },
+              { field: 'date', operator: 'between', value: ['2023-12-06', '2023-12-12'] },
+            ],
+          },
+        ]);
+        const expected = [
+          'qux||on[0]=bar||eq||100&on[1]=date||between||2023-12-06,2023-12-12',
+        ];
+        expect(qb.queryObject.join).toIncludeSameMembers(expected);
+      });
     });
 
     describe('#sortBy', () => {
