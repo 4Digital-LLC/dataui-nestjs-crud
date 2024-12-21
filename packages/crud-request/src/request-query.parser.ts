@@ -361,17 +361,56 @@ export class RequestQueryParser implements ParsedRequestParams {
     return conditions.map((cond: string) => this.conditionParser('filter', {}, cond));
   }
 
-  private joinParser(data: string): QueryJoin {
-    const param = data.split(this._options.delim);
+  private isValidJoinCondition(joinStr: string): boolean {
+    const parsedJoin = parse(joinStr);
 
-    const field = param[0];
-    const selectString = param[1];
-    const conditions = param.slice(2).join(this._options.delim);
+    return Object.keys(parsedJoin).shift() === 'on' && isArrayFull(parsedJoin['on']);
+  }
+
+  private parseJoinConfiguration(components: { field: string; remaining: string[] }): {
+    select?: string[];
+    conditions?: QueryFilter[];
+  } {
+    if (!components.remaining.length) {
+      return {};
+    }
+
+    const joinStr = components.remaining.join(this._options.delim);
+    const validCondition = this.isValidJoinCondition(joinStr);
+
+    // Check if it's a condition-only join
+    if (validCondition) {
+      return {
+        conditions: this.parseJoinConditions(joinStr),
+      };
+    }
+
+    // Handle select + optional conditions
+    return {
+      select: components.remaining[0]?.split(this._options.delimStr),
+      conditions: isArrayFull(components.remaining.slice(1))
+        ? this.parseJoinConditions(
+            components.remaining.slice(1).join(this._options.delim),
+          )
+        : undefined,
+    };
+  }
+
+  private splitJoinComponents(data: string): { field: string; remaining: string[] } {
+    const [field, ...remaining] = data.split(this._options.delim);
+
+    return { field, remaining };
+  }
+
+  private joinParser(data: string): QueryJoin {
+    const joinComponents = this.splitJoinComponents(data);
+
+    const joinConfig = this.parseJoinConfiguration(joinComponents);
 
     const join: QueryJoin = {
-      field,
-      select: selectString ? selectString.split(this._options.delimStr) : undefined,
-      on: isStringFull(conditions) ? this.parseJoinConditions(conditions) : undefined,
+      field: joinComponents.field,
+      select: joinConfig.select,
+      on: joinConfig.conditions,
     };
 
     validateJoin(join);
