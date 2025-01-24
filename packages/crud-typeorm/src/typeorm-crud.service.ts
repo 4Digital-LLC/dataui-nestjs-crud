@@ -324,9 +324,6 @@ export class TypeOrmCrudService<T> extends CrudService<T, DeepPartial<T>> {
       }
     }
 
-    // search
-    this.setSearchCondition(builder, parsed.search, options.operators?.custom);
-
     // set joins
     const joinOptions = options.query?.join || {};
     const allowedJoins = objKeys(joinOptions);
@@ -354,6 +351,9 @@ export class TypeOrmCrudService<T> extends CrudService<T, DeepPartial<T>> {
         }
       }
     }
+
+    // search
+    this.setSearchCondition(builder, parsed.search, options.operators?.custom);
 
     /* istanbul ignore else */
     if (many) {
@@ -1037,21 +1037,21 @@ export class TypeOrmCrudService<T> extends CrudService<T, DeepPartial<T>> {
     const i = ['mysql', 'mariadb'].includes(this.dbName) ? '`' : '"';
     const cols = field.split('.');
 
-    switch (cols.length) {
-      case 1:
-        if (sort) {
-          return `${this.alias}.${field}`;
-        }
-
-        const dbColName =
-          this.entityColumnsHash[field] !== field ? this.entityColumnsHash[field] : field;
-
-        return `${i}${this.alias}${i}.${i}${dbColName}${i}`;
-      case 2:
-        return field;
-      default:
-        return cols.slice(cols.length - 2, cols.length).join('.');
+    if (cols.length === 1) {
+      if (sort) {
+        return `${this.alias}.${field}`;
+      }
+      const dbColName =
+        this.entityColumnsHash[field] !== field ? this.entityColumnsHash[field] : field;
+      return `${i}${this.alias}${i}.${i}${dbColName}${i}`;
     }
+
+    const path = cols.slice(0, -1).join('.');
+    const relation = this.entityRelationsHash.get(path);
+    const fieldName = cols[cols.length - 1];
+    const alias = relation.alias ?? relation.name;
+
+    return `${i}${alias}${i}.${i}${fieldName}${i}`;
   }
 
   protected mapSort(sort: QuerySort[]) {
