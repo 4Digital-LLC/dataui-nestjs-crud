@@ -524,7 +524,7 @@ export class CrudRoutesFactory {
    * and add the NestJs ValidationPipe to create, update and replace operations
    * ValidationPipe.group option is used to distinguish between the DTO for creating and the DTO for updating
    * for example each prop in body is optional in "update", but required in "create" operation
-   * https://gid-oss.github.io/dataui-nestjs-crud/controllers/#request-validation
+   * https://4Digital-LLC.github.io/dataui-nestjs-crud/controllers/#request-validation
    *
    * ```
    * class UserEntity{

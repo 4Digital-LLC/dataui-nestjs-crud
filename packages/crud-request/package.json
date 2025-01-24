@@ -14,10 +14,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/gid-oss/dataui-nestjs-crud"
+    "url": "https://github.com/4Digital-LLC/dataui-nestjs-crud"
   },
   "bugs": {
-    "url": "https://github.com/gid-oss/dataui-nestjs-crud/issues"
+    "url": "https://github.com/4Digital-LLC/dataui-nestjs-crud/issues"
   },
   "keywords": [
     "typescript",
