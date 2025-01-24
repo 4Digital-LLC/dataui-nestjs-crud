@@ -6,7 +6,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "private": true,
   "scripts": {
     "s": "npx nps",
     "s:list": "yarn s --scripts",
