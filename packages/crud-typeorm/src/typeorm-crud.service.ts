@@ -8,7 +8,7 @@ import {
   JoinOption,
   JoinOptions,
   QueryOptions,
-} from '@dataui/crud';
+} from '@datafas/crud';
 import {
   ComparisonOperator,
   ParsedRequestParams,
@@ -17,7 +17,7 @@ import {
   QuerySort,
   SCondition,
   SConditionKey,
-} from '@dataui/crud-request';
+} from '@datafas/crud-request';
 import {
   ClassType,
   hasLength,
@@ -27,7 +27,7 @@ import {
   isObject,
   isUndefined,
   objKeys,
-} from '@dataui/crud-util';
+} from '@datafas/crud-util';
 import { oO } from '@zmotivat0r/o0';
 import { plainToClass } from 'class-transformer';
 import {
@@ -1256,7 +1256,9 @@ export class TypeOrmCrudService<T> extends CrudService<T, DeepPartial<T>> {
   }
 
   protected getColumnType(field: string): ColumnType {
-    const column = this.repo.metadata.ownColumns.find((col) => col.propertyName === field);
+    const column = this.repo.metadata.ownColumns.find(
+      (col) => col.propertyName === field,
+    );
     return column.type;
   }
 }

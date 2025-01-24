@@ -1,7 +1,4 @@
-import {
-  QueryFilter,
-  SCondition,
-} from '@dataui/crud-request/lib/types/request-query.types';
+import { QueryFilter, SCondition } from '@datafas/crud-request/types/request-query.types';
 
 export type QueryFilterFunction = (
   search?: SCondition,

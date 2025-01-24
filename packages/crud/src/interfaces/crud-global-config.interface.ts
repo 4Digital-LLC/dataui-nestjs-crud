@@ -1,4 +1,4 @@
-import { RequestQueryBuilderOptions } from '@dataui/crud-request';
+import { RequestQueryBuilderOptions } from '@datafas/crud-request';
 
 import { AuthGlobalOptions } from './auth-options.interface';
 import { OperatorsOptions } from './operators-options.interface';

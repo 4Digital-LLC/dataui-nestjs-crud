@@ -1,5 +1,11 @@
-import { CrudValidationGroups } from '@dataui/crud';
-import { Entity, Column, OneToMany, PrimaryGeneratedColumn, DeleteDateColumn } from 'typeorm';
+import { CrudValidationGroups } from '@datafas/crud';
+import {
+  Entity,
+  Column,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  DeleteDateColumn,
+} from 'typeorm';
 import {
   IsOptional,
   IsString,

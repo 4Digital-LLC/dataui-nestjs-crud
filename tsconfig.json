@@ -15,14 +15,14 @@
     "composite": true,
     "baseUrl": "./packages",
     "paths": {
-      "@dataui/crud": ["crud/src"],
-      "@dataui/crud-typeorm": ["crud-typeorm/src"],
-      "@dataui/crud-request": ["crud-request/src"],
-      "@dataui/crud-util": ["crud-util/src"],
-      "@dataui/crud/*": ["crud/src/*"],
-      "@dataui/crud-typeorm/*": ["crud-typeorm/src/*"],
-      "@dataui/crud-request/*": ["crud-request/src/*"],
-      "@dataui/crud-util/*": ["crud-util/src/*"]
+      "@datafas/crud": ["crud/src"],
+      "@datafas/crud-typeorm": ["crud-typeorm/src"],
+      "@datafas/crud-request": ["crud-request/src"],
+      "@datafas/crud-util": ["crud-util/src"],
+      "@datafas/crud/*": ["crud/src/*"],
+      "@datafas/crud-typeorm/*": ["crud-typeorm/src/*"],
+      "@datafas/crud-request/*": ["crud-request/src/*"],
+      "@datafas/crud-util/*": ["crud-util/src/*"]
     }
   },
   "references": [

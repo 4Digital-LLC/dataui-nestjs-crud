@@ -5,7 +5,7 @@ import {
   isObject,
   isString,
   isUndefined,
-} from '@dataui/crud-util';
+} from '@datafas/crud-util';
 import { IStringifyOptions, stringify } from 'qs';
 
 import {

@@ -1,5 +1,5 @@
 {
-  "name": "@dataui/crud",
+  "name": "@datafas/crud",
   "description": "NestJs CRUD for RESTful APIs",
   "version": "5.3.4",
   "license": "MIT",
@@ -40,8 +40,8 @@
     "build": "npx tsc -b"
   },
   "dependencies": {
-    "@dataui/crud-request": "^5.3.4",
-    "@dataui/crud-util": "^5.3.4",
+    "@datafas/crud-request": "^5.3.4",
+    "@datafas/crud-util": "^5.3.4",
     "deepmerge": "^3.2.0",
     "pluralize": "^8.0.0"
   },

@@ -12,13 +12,13 @@ layout: home
 ## Installation
 
 ```
-npm i @dataui/crud-typeorm @nestjs/typeorm typeorm
+npm i @datafas/crud-typeorm @nestjs/typeorm typeorm
 ```
 
 For for TypeORM 0.2.x :
 
 ```
-npm i @dataui/crud-typeorm@~5.1 @nestjs/typeorm@~8.0.2 typeorm@~0.2
+npm i @datafas/crud-typeorm@~5.1 @nestjs/typeorm@~8.0.2 typeorm@~0.2
 ```
 
 ## Compatibility

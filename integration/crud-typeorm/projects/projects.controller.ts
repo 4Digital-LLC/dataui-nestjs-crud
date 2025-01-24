@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { Crud, OperatorsOptions, CustomOperators } from '@dataui/crud';
+import { Crud, OperatorsOptions, CustomOperators } from '@datafas/crud';
 
 import { Project } from './project.entity';
 import { ProjectsService } from './projects.service';
@@ -27,8 +27,10 @@ import { ProjectsService } from './projects.service';
     },
   },
   operators: {
-    custom: { custom: {query: (field: string, param: string) => `${field} = :${param}`}}
-  }
+    custom: {
+      custom: { query: (field: string, param: string) => `${field} = :${param}` },
+    },
+  },
 })
 @ApiTags('projects')
 @Controller('/companies/:companyId/projects')

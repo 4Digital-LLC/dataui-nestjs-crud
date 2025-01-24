@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { IsOptional, IsString, IsUUID } from 'class-validator';
-import { CrudValidationGroups } from '@dataui/crud';
+import { CrudValidationGroups } from '@datafas/crud';
 
 const { CREATE, UPDATE } = CrudValidationGroups;
 
