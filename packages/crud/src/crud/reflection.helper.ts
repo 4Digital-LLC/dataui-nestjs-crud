@@ -1,7 +1,7 @@
 import { RouteParamtypes } from '@nestjs/common/enums/route-paramtypes.enum';
 import * as CONSTANTS from '@nestjs/common/constants';
 import { ArgumentsHost } from '@nestjs/common';
-import { isFunction } from '@dataui/crud-util';
+import { isFunction } from '@datafas/crud-util';
 
 import { BaseRoute, MergedCrudOptions, AuthOptions } from '../interfaces';
 import { BaseRouteName } from '../types';

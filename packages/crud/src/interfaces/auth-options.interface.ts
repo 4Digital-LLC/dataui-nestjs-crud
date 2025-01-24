@@ -1,5 +1,5 @@
-import { SCondition } from '@dataui/crud-request/lib/types/request-query.types';
-import { ObjectLiteral } from '@dataui/crud-util';
+import { SCondition } from '@datafas/crud-request/types/request-query.types';
+import { ObjectLiteral } from '@datafas/crud-util';
 import { ClassTransformOptions } from 'class-transformer';
 
 export interface AuthGlobalOptions {

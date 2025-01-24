@@ -10,7 +10,7 @@ This package provides a CRUD service for relational databases build with TypeORM
 ## Install
 
 ```shell
-npm i @dataui/crud-typeorm @nestjs/typeorm typeorm
+npm i @datafas/crud-typeorm @nestjs/typeorm typeorm
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ Then you need to create a **service**:
 ```typescript
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { TypeOrmCrudService } from '@dataui/crud-typeorm';
+import { TypeOrmCrudService } from '@datafas/crud-typeorm';
 
 import { Company } from './company.entity';
 
@@ -49,7 +49,7 @@ After that you need to provide your service in a **controller**:
 
 ```typescript
 import { Controller } from '@nestjs/common';
-import { Crud, CrudController } from '@dataui/crud';
+import { Crud, CrudController } from '@datafas/crud';
 
 import { Company } from './company.entity';
 import { CompaniesService } from './companies.service';

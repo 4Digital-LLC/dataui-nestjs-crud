@@ -6,7 +6,7 @@ import {
   CrudRequest,
   ParsedRequest,
   Override,
-} from '@dataui/crud';
+} from '@datafas/crud';
 
 import { User } from './user.entity';
 import { UsersService } from './users.service';

@@ -1,4 +1,4 @@
-import { ObjectLiteral } from '@dataui/crud-util';
+import { ObjectLiteral } from '@datafas/crud-util';
 import { ClassTransformOptions } from 'class-transformer';
 import { QueryFields, QueryFilter, QueryJoin, QuerySort, SCondition } from '../types';
 

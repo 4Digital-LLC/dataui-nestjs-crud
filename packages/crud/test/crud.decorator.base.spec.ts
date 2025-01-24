@@ -2,7 +2,7 @@ import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { Controller, INestApplication } from '@nestjs/common';
 import { APP_FILTER } from '@nestjs/core';
-import { RequestQueryBuilder } from '@dataui/crud-request';
+import { RequestQueryBuilder } from '@datafas/crud-request';
 
 import { Crud } from '../src/decorators/crud.decorator';
 import { CreateManyDto } from '../src/interfaces';
@@ -46,9 +46,7 @@ describe('#crud', () => {
 
     describe('#getManyBase', () => {
       it('should return status 200', () => {
-        return request(server)
-          .get('/test')
-          .expect(200);
+        return request(server).get('/test').expect(200);
       });
       it('should return status 400', (done) => {
         const query = qb.setFilter({ field: 'foo', operator: 'gt' }).query();
@@ -66,9 +64,7 @@ describe('#crud', () => {
 
     describe('#getOneBase', () => {
       it('should return status 200', () => {
-        return request(server)
-          .get('/test/1')
-          .expect(200);
+        return request(server).get('/test/1').expect(200);
       });
       it('should return status 400', (done) => {
         return request(server)
@@ -93,10 +89,7 @@ describe('#crud', () => {
           email: 'test@test.com',
           age: 15,
         };
-        return request(server)
-          .post('/test')
-          .send(send)
-          .expect(201);
+        return request(server).post('/test').send(send).expect(201);
       });
       it('should return status 400', (done) => {
         const send: TestModel = {
@@ -132,10 +125,7 @@ describe('#crud', () => {
             },
           ],
         };
-        return request(server)
-          .post('/test/bulk')
-          .send(send)
-          .expect(201);
+        return request(server).post('/test/bulk').send(send).expect(201);
       });
       it('should return status 400', (done) => {
         const send: CreateManyDto<TestModel> = {
@@ -160,10 +150,7 @@ describe('#crud', () => {
           email: 'test@test.com',
           age: 15,
         };
-        return request(server)
-          .put('/test/1')
-          .send(send)
-          .expect(200);
+        return request(server).put('/test/1').send(send).expect(200);
       });
       it('should return status 400', (done) => {
         const send: TestModel = {
@@ -190,10 +177,7 @@ describe('#crud', () => {
           email: 'test@test.com',
           age: 15,
         };
-        return request(server)
-          .patch('/test/1')
-          .send(send)
-          .expect(200);
+        return request(server).patch('/test/1').send(send).expect(200);
       });
       it('should return status 400', (done) => {
         const send: TestModel = {
@@ -213,9 +197,7 @@ describe('#crud', () => {
 
     describe('#deleteOneBase', () => {
       it('should return status 200', () => {
-        return request(server)
-          .delete('/test/1')
-          .expect(200);
+        return request(server).delete('/test/1').expect(200);
       });
     });
   });

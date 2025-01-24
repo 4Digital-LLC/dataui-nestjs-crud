@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { DataSourceOptions } from 'typeorm';
-import { isNil } from '@dataui/crud-util';
+import { isNil } from '@datafas/crud-util';
 
 const type = (process.env.TYPEORM_CONNECTION as any) || 'postgres';
 
@@ -24,7 +24,5 @@ export const withCache: DataSourceOptions = {
   },
   entities: [join(__dirname, './**/*.entity{.ts,.js}')],
   migrationsTableName: 'orm_migrations',
-  migrations: [
-    './seeds.ts'
-  ]
+  migrations: ['./seeds.ts'],
 };

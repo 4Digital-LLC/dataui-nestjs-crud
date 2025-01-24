@@ -10,8 +10,8 @@ import {
   RequestQueryParser,
   SCondition,
   QueryFilter,
-} from '@dataui/crud-request';
-import { isNil, isFunction, isArrayFull, hasLength } from '@dataui/crud-util';
+} from '@datafas/crud-request';
+import { isNil, isFunction, isArrayFull, hasLength } from '@datafas/crud-util';
 import { ClassTransformOptions } from 'class-transformer';
 
 import { PARSED_CRUD_REQUEST_KEY } from '../constants';

@@ -1,5 +1,5 @@
-import { RequestQueryBuilder } from '@dataui/crud-request';
-import { isObjectFull } from '@dataui/crud-util';
+import { RequestQueryBuilder } from '@datafas/crud-request';
+import { isObjectFull } from '@datafas/crud-util';
 import * as deepmerge from 'deepmerge';
 
 import { CrudGlobalConfig } from '../interfaces';

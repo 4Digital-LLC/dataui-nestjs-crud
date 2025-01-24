@@ -1,8 +1,6 @@
-import {
-  QueryFields,
-  QuerySort,
-} from '@dataui/crud-request/lib/types/request-query.types';
+import { QueryFields, QuerySort } from '@datafas/crud-request/types/request-query.types';
 
+// '@dataui/crud-request/lib/types/request-query.types';
 import { QueryFilterOption } from '../types';
 
 export interface QueryOptions {

@@ -1,4 +1,4 @@
-import { RequestQueryBuilder } from '@dataui/crud-request';
+import { RequestQueryBuilder } from '@datafas/crud-request';
 import { CrudGlobalConfig } from '../src/interfaces';
 import { CrudConfigService } from '../src/module/crud-config.service';
 
