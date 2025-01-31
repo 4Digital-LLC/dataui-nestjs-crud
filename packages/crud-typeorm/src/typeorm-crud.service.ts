@@ -50,6 +50,7 @@ interface IAllowedRelation {
   columns: string[];
   primaryColumns: string[];
   allowedColumns: string[];
+  dbColumns: Record<string, string>;
 }
 
 export class TypeOrmCrudService<T> extends CrudService<T, DeepPartial<T>> {
@@ -500,6 +501,7 @@ export class TypeOrmCrudService<T> extends CrudService<T, DeepPartial<T>> {
   protected getEntityColumns(entityMetadata: EntityMetadata): {
     columns: string[];
     primaryColumns: string[];
+    dbColumns: Record<string, string>;
   } {
     const columns =
       entityMetadata.columns.map((prop) => prop.propertyPath) ||
@@ -507,8 +509,13 @@ export class TypeOrmCrudService<T> extends CrudService<T, DeepPartial<T>> {
     const primaryColumns =
       entityMetadata.primaryColumns.map((prop) => prop.propertyPath) ||
       /* istanbul ignore next */ [];
+    const dbColumns =
+      entityMetadata.columns.reduce((acc, prop) => {
+        acc[prop.propertyName] = prop.databasePath;
+        return acc;
+      }, {}) || /* istanbul ignore next */ [];
 
-    return { columns, primaryColumns };
+    return { columns, primaryColumns, dbColumns };
   }
 
   protected getRelationMetadata(field: string, options: JoinOption): IAllowedRelation {
@@ -569,7 +576,8 @@ export class TypeOrmCrudService<T> extends CrudService<T, DeepPartial<T>> {
         }
 
         if (relationMetadata) {
-          const { columns, primaryColumns } = this.getEntityColumns(relationMetadata);
+          const { columns, primaryColumns, dbColumns } =
+            this.getEntityColumns(relationMetadata);
 
           if (!path && parentPath) {
             const parentAllowedRelation = this.entityRelationsHash.get(parentPath);
@@ -589,6 +597,7 @@ export class TypeOrmCrudService<T> extends CrudService<T, DeepPartial<T>> {
             columns,
             nested,
             primaryColumns,
+            dbColumns,
           };
         }
       }
@@ -1051,7 +1060,9 @@ export class TypeOrmCrudService<T> extends CrudService<T, DeepPartial<T>> {
     const fieldName = cols[cols.length - 1];
     const alias = relation.alias ?? relation.name;
 
-    return `${i}${alias}${i}.${i}${fieldName}${i}`;
+    const dbColumn = relation.dbColumns[fieldName] ?? fieldName;
+
+    return `${i}${alias}${i}.${i}${dbColumn}${i}`;
   }
 
   protected mapSort(sort: QuerySort[]) {
