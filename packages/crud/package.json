@@ -1,7 +1,7 @@
 {
   "name": "@datafas/crud",
   "description": "NestJs CRUD for RESTful APIs",
-  "version": "5.3.4",
+  "version": "5.3.6",
   "license": "MIT",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -40,8 +40,8 @@
     "build": "npx tsc -b"
   },
   "dependencies": {
-    "@datafas/crud-request": "^5.3.4",
-    "@datafas/crud-util": "^5.3.4",
+    "@datafas/crud-request": "^5.3.6",
+    "@datafas/crud-util": "^5.3.6",
     "deepmerge": "^3.2.0",
     "pluralize": "^8.0.0"
   },
