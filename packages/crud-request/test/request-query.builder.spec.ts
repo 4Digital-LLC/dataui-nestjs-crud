@@ -353,6 +353,24 @@ describe('#request-query', () => {
       });
     });
 
+    describe('#setExtra', () => {
+      const extraParamName = RequestQueryBuilder.getOptions().paramNamesMap
+        .extra as string;
+      it('should not throw', () => {
+        (qb as any).setExtra();
+        expect(qb.queryObject[extraParamName]).toBeUndefined();
+      });
+      it('should set extra params', () => {
+        const extraParams = { param: 'foo' };
+
+        qb.setExtra(extraParams);
+
+        Object.keys(extraParams).forEach((key) => {
+          expect(qb.queryObject[extraParamName + key]).toBe(extraParams[key]);
+        });
+      });
+    });
+
     describe('#resetCache', () => {
       it('should set cache', () => {
         expect(qb.queryObject.cache).toBeUndefined();
@@ -425,9 +443,10 @@ describe('#request-query', () => {
           .sortBy({ field: 'foo', order: 'DESC' })
           .resetCache()
           .setIncludeDeleted(1)
+          .setExtra({ param: 'foo' })
           .query(false);
         const expected =
-          'fields=foo,bar&filter[0]=is||notnull&or[0]=ok||ne||false&join[0]=voo||h,data||on[0]=foo||eq||baz&on[1]=bar||isnull&on[2]=qux||between||1000,8000&limit=1&offset=2&page=3&sort[0]=foo,DESC&cache=0&include_deleted=1';
+          'fields=foo,bar&filter[0]=is||notnull&or[0]=ok||ne||false&join[0]=voo||h,data||on[0]=foo||eq||baz&on[1]=bar||isnull&on[2]=qux||between||1000,8000&limit=1&offset=2&page=3&sort[0]=foo,DESC&cache=0&include_deleted=1&extra.param=foo';
         expect(test).toBe(expected);
       });
     });
@@ -478,9 +497,10 @@ describe('#request-query', () => {
           page: 3,
           sort: [['foo', 'DESC']],
           resetCache: true,
+          extra: { param: 'foo' },
         }).query(false);
         const expected =
-          'fields=foo,bar&filter[0]=is||notnull&or[0]=ok||ne||false&join[0]=voo||h,data||on[0]=foo||eq||baz&on[1]=bar||isnull&on[2]=qux||between||1000,8000&limit=1&offset=2&page=3&sort[0]=foo,DESC&cache=0';
+          'fields=foo,bar&filter[0]=is||notnull&or[0]=ok||ne||false&join[0]=voo||h,data||on[0]=foo||eq||baz&on[1]=bar||isnull&on[2]=qux||between||1000,8000&limit=1&offset=2&page=3&sort[0]=foo,DESC&extra.param=foo&cache=0';
         expect(test).toBe(expected);
       });
       it('should return a valid query string, 2', () => {
