@@ -128,6 +128,17 @@ export class RequestQueryBuilder {
     return this;
   }
 
+  setExtra(e: Record<string, any>) {
+    if (!isNil(e) && isObject(e)) {
+      Object.keys(e).forEach((key) => {
+        if (!isNil(e[key])) {
+          this.queryObject[this.paramNames.extra + key] = e[key];
+        }
+      });
+    }
+    return this;
+  }
+
   setFilter(
     f: QueryFilter | QueryFilterArr | Array<QueryFilter | QueryFilterArr>,
     customOperators?: CustomOperators,
@@ -257,6 +268,7 @@ export class RequestQueryBuilder {
     this.setOffset(params.offset);
     this.setPage(params.page);
     this.sortBy(params.sort);
+    this.setExtra(params.extra);
     if (params.resetCache) {
       this.resetCache();
     }
