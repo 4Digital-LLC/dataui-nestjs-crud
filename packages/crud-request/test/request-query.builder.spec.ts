@@ -306,6 +306,11 @@ describe('#request-query', () => {
         const expected = ['bar,DESC', 'foo,ASC'];
         expect(qb.queryObject.sort).toIncludeSameMembers(expected);
       });
+      it('should set sort with alias', () => {
+        qb.sortBy([{ field: 'bar.foo', order: 'DESC' }, ['foo.baz', 'ASC']]);
+        const expected = ['bar.foo,DESC', 'foo.baz,ASC'];
+        expect(qb.queryObject.sort).toIncludeSameMembers(expected);
+      });
     });
 
     describe('#setLimit', () => {
