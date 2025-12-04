@@ -1062,6 +1062,10 @@ export class TypeOrmCrudService<T> extends CrudService<T, DeepPartial<T>> {
 
     const dbColumn = relation.dbColumns[fieldName] ?? fieldName;
 
+    if (sort) {
+      return `${alias}.${dbColumn}`;
+    }
+
     return `${i}${alias}${i}.${i}${dbColumn}${i}`;
   }
 
