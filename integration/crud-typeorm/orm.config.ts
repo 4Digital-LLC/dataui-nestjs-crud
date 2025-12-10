@@ -2,7 +2,7 @@ import { join } from 'path';
 import { DataSourceOptions } from 'typeorm';
 import { isNil } from '@datafas/crud-util';
 
-const type = (process.env.TYPEORM_CONNECTION as any) || 'postgres';
+const type = (process.env.TYPEORM_CONNECTION as any) || 'mysql';
 
 export const withCache: DataSourceOptions = {
   type,

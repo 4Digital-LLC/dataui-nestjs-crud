@@ -623,6 +623,20 @@ describe('#crud-typeorm', () => {
         );
       });
 
+      it('should sort by nested field with alias', async () => {
+        const query = qb
+          .setFilter({ field: 'pr.id', operator: 'notnull' })
+          .setJoin({ field: 'company' })
+          .setJoin({ field: 'company.projects' })
+          .sortBy({ field: 'pr.name', order: 'DESC' })
+          .query();
+        const res = await request(server).get('/users2').query(query).expect(200);
+
+        expect(res.body[0].company.projects[1].id).toBeLessThan(
+          res.body[0].company.projects.sort((a, b) => (a.name < b.name ? 1 : -1))[0].id,
+        );
+      });
+
       it('should throw 400 if SQL injection has been detected', (done) => {
         const query = qb
           .sortBy({
